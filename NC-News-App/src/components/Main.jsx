@@ -1,6 +1,14 @@
 import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import Homepage from "./Homepage";
+import ArticlePage from "./ArticlePage";
 
 const Main = () => {
-    return <h2>Latest Articles</h2>;
+    return (
+        <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/articles/:article_id" element={<ArticlePage />} />
+        </Routes>
+    );
 };
 export default Main;
