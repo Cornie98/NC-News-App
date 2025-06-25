@@ -7,7 +7,7 @@ const ArticleCard = ({ article }) => {
                 to={`/articles/${article.article_id}`}
                 style={{ textDecoration: "none", color: "inherit" }}
             >
-                <h3>{article.title}</h3>
+                <h2>{article.title}</h2>
                 <h4>{article.topic}</h4>
                 <p>By {article.author}</p>
                 <p>
@@ -18,10 +18,13 @@ const ArticleCard = ({ article }) => {
                     })}
                 </p>
 
-                <img src={article.article_img_url}></img>
-                <section>
-                    <span>votes:{article.votes}</span>
-                    <span>comments:{article.comment_count}</span>
+                <img
+                    className="article-card-img"
+                    src={article.article_img_url}
+                ></img>
+                <section className="votes-and-comments">
+                    <span>votes: {article.votes}</span>
+                    <span>comments: {article.comment_count}</span>
                 </section>
             </Link>
         </li>

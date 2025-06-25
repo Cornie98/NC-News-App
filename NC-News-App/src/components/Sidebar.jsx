@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "../Layout.css";
 
-const Sidebar = ({ children }) => {
+const Sidebar = ({ children, topics }) => {
     return (
         <div className="layout">
             <nav className="sidebar">
@@ -9,21 +9,18 @@ const Sidebar = ({ children }) => {
                     <li>
                         <Link to="/">Home</Link>
                     </li>
-                    <h3>Topics</h3>
-                    <li>
-                        <Link to="/coding">Coding</Link>
-                    </li>
-                    <li>
-                        <Link to="/cooking">Cooking</Link>
-                    </li>
-                    <li>
-                        <Link to="/football">Football</Link>
-                    </li>
+                    <h2>Topics</h2>
+                    {topics.map((topic) => (
+                        <li key={topic.slug}>
+                            <Link to={`/topics/${topic.slug}`}>
+                                #{topic.slug}
+                            </Link>
+                        </li>
+                    ))}
                 </ul>
             </nav>
             <main className="content">{children}</main>
         </div>
     );
 };
-
 export default Sidebar;

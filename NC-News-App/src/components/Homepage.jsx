@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import ArticleList from "./ArticleList";
-import TopArticle from "./TopArticle";
+import ArticleList from "./Articles/ArticleList";
+import TopArticle from "./Articles/TopArticle";
 const Homepage = () => {
     const [articles, setArticles] = useState([]);
     const [topArticle, setTopArticle] = useState(null);
@@ -26,8 +26,8 @@ const Homepage = () => {
     }, []);
 
     return (
-        <div>
-            <h2>Top Article</h2>
+        <div className="main-content">
+            <h3 className="Top-Article-Title">Top Article</h3>
             <TopArticle article={topArticle} />
             <h2>All Articles</h2>
             <ArticleList articles={articles} />

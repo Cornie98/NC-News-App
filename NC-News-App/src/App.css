@@ -1,3 +1,18 @@
+body {
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+
+    overflow-x: hidden;
+    color: rgb(0, 0, 0);
+}
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 400;
+}
 .header {
     display: flex;
     align-items: center;
@@ -9,23 +24,123 @@
     gap: 0.5rem;
     flex-shrink: 0;
 }
-.logo {
+a {
+    text-decoration: none;
+}
+.title {
+    font-family: "Jacquard 12", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 300%;
+    text-decoration: none;
+    color: black;
+}
+.pixel-art {
     height: 4em;
     padding: 0.5rem;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
 }
 .search-form {
     flex: 1;
     display: flex;
-    max-width: auto;
+    max-width: 100%;
     margin: 1.2rem;
+    height: 40px;
 }
 .search-form input {
+    text-align: center;
     flex: 1;
-    border-radius: 8px;
+    border-radius: 20px;
+    border: solid 2px black;
+}
+.main-content {
+    padding: 1rem;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
 }
 
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.comment-form input {
+    width: 100%;
+    border: solid 2px rgba(255, 255, 255, 0);
+    border-bottom: solid 2px rgba(0, 0, 0, 0.726);
+    box-sizing: border-box;
+}
+
+.comment-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+    gap: 8px;
+}
+
+button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
 .title {
     margin: 0;
+}
+.Top-Article-Title {
+    margin-top: 0;
+}
+.top-article {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border: dotted darkblue;
+    border-width: 4px;
+    border-radius: 6px;
+    padding: 2rem;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.top-article-text {
+    flex: 1 1 300px;
+    max-width: 600px;
+}
+
+.top-article-title {
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+}
+
+.top-article-author {
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 1rem;
+    text-decoration: underline;
+    color: darkblue;
+    font-weight: bold;
+}
+
+.top-article-img {
+    flex: 1 1 1000px;
+    max-width: 1000px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
 }
 
 .article-list {
@@ -36,7 +151,98 @@
     overflow-x: auto;
     padding: 1rem;
     scroll-behavior: smooth;
+
+    max-width: 100%;
+    width: 100vw;
+    box-sizing: border-box;
 }
+.article-list::-webkit-scrollbar {
+    height: 10px;
+}
+
+.article-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.article-list::-webkit-scrollbar-thumb {
+    background-color: darkblue;
+    border-radius: 4px;
+}
+.article-list {
+    scrollbar-width: thin;
+
+    scrollbar-color: darkblue transparent;
+}
+
 .article-card {
+    padding: 1rem;
+    flex: 0 0 200px;
     list-style: none;
+    border-left: dotted rgba(0, 0, 139, 0.712);
+    border-width: 4px;
+}
+.article-card-img {
+    max-height: 300px;
+}
+.votes-and-comments {
+    display: flex;
+    gap: 0.5rem;
+}
+.article-section {
+    padding: 2rem;
+    border: dotted darkblue;
+}
+.article-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+.article-vote-section {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.article-body {
+    font-family: monospace;
+    font-optical-sizing: auto;
+    font-weight: 450;
+    font-style: normal;
+    font-size: 150%;
+}
+.comment-list {
+    padding-left: 0%;
+    padding-top: 2rem;
+    margin: 0;
+    list-style: none;
+}
+
+.comment-card {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-bottom: 2rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    font-size: clamp(0.95rem, 2vw, 1rem);
+}
+.comment-name-date-section {
+    font-size: large;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.comment-body {
+    font-family: monospace;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+.comment-vote-section {
+    font-family: monospace;
+    font-size: large;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
