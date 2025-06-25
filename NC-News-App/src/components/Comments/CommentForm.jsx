@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../../Contexts/UserContext";
 
 const CommentForm = ({ articleId, onCommentSubmit }) => {
+    const { user } = useContext(UserContext);
     const [newComment, setNewComment] = useState("");
-    const [username, setUsername] = useState("happyamy2016");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [success, setSuccess] = useState(false);
 
@@ -11,7 +12,7 @@ const CommentForm = ({ articleId, onCommentSubmit }) => {
 
         const pendingComment = {
             comment_id: Date.now(),
-            author: username,
+            author: user.username,
             body: newComment,
             votes: 0,
             created_at: new Date().toISOString(),
@@ -30,7 +31,10 @@ const CommentForm = ({ articleId, onCommentSubmit }) => {
                 {
                     method: "POST",
                     headers: { "Content-type": "application/json" },
-                    body: JSON.stringify({ username, body: newComment }),
+                    body: JSON.stringify({
+                        username: user.username,
+                        body: newComment,
+                    }),
                 }
             );
             if (!response.ok) {
@@ -50,10 +54,12 @@ const CommentForm = ({ articleId, onCommentSubmit }) => {
         <form className="comment-form" onSubmit={handleSubmit} action="">
             <input
                 type="text"
-                placeholder="Add a comment..."
+                placeholder={
+                    user ? "Add a comment..." : "Please login to comment"
+                }
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
-                disabled={isSubmitting}
+                disabled={isSubmitting || !user}
             />
             <div className="comment-buttons">
                 <button
@@ -67,7 +73,7 @@ const CommentForm = ({ articleId, onCommentSubmit }) => {
                     {isSubmitting
                         ? "Submitting..."
                         : success
-                          ? "✓ Submitted"
+                          ? "Submitted"
                           : "Submit"}
                 </button>
             </div>

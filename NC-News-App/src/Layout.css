@@ -30,7 +30,9 @@
     color: #000000;
     font-weight: bold;
 }
-
+.sidebar a:hover {
+    color: darkblue;
+}
 .content {
     flex: 1;
     padding: 2rem;
@@ -43,7 +45,12 @@
     .sidebar {
         display: none;
     }
-
+    .title {
+        display: none;
+    }
+    .search-form {
+        margin-left: 100px;
+    }
     .content {
         padding: 1rem;
     }

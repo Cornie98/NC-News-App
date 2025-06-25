@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 
-const ArticleCard = ({ article }) => {
+const ArticleCard = ({ article, direction = "row" }) => {
     return (
-        <li className="article-card">
+        <li
+            className={`article-card ${direction === "column" ? "vertical" : ""}`}
+        >
             <Link
                 to={`/articles/${article.article_id}`}
                 style={{ textDecoration: "none", color: "inherit" }}
             >
                 <h2>{article.title}</h2>
-                <h4>{article.topic}</h4>
+                <h3>#{article.topic}</h3>
                 <p>By {article.author}</p>
                 <p>
                     {new Date(article.created_at).toLocaleDateString("en-GB", {
@@ -21,6 +23,7 @@ const ArticleCard = ({ article }) => {
                 <img
                     className="article-card-img"
                     src={article.article_img_url}
+                    alt={`Image for ${article.title}`}
                 ></img>
                 <section className="votes-and-comments">
                     <span>votes: {article.votes}</span>

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Comments from "../Comments/Comments";
-import { GoThumbsup, GoThumbsdown } from "react-icons/go";
-import { PiShareFat } from "react-icons/pi";
+import { Link } from "react-router-dom";
+
+import ArticleVotes from "./ArticleVotes";
 
 const ArticlePage = () => {
     const [article, setArticle] = useState(null);
@@ -31,8 +32,10 @@ const ArticlePage = () => {
                     <div className="article-section">
                         <h1>{article.title}</h1>
 
-                        <h3>By {article.author}</h3>
-                        <h3>#{article.topic}</h3>
+                        <h2>By {article.author}</h2>
+                        <Link to={`/topics/${article.topic}`}>
+                            #{article.topic}
+                        </Link>
                         <p>
                             {new Date(article.created_at).toLocaleDateString(
                                 "en-GB",
@@ -46,25 +49,18 @@ const ArticlePage = () => {
                         <img
                             className="article-img"
                             src={article.article_img_url}
-                            alt=""
+                            alt={`Image for ${article.title}`}
                         />
-                        <section className="article-vote-section">
-                            <span>
-                                <button>
-                                    <GoThumbsup />
-                                </button>
-                            </span>
-                            <span>{article.votes}</span>
-                            <span>
-                                <button>
-                                    <GoThumbsdown />
-                                </button>
-                            </span>
-                        </section>
+                        <ArticleVotes article={article} />
                         <p className="article-body">{article.body}</p>
                     </div>
                     <section>
                         <Comments article={article} />
+                    </section>
+                    <section className="article-see-more">
+                        <Link to={`/topics/${article.topic}`}>
+                            click me to see more articles about {article.topic}
+                        </Link>
                     </section>
                 </>
             ) : (

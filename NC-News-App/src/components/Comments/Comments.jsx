@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
 import CommentList from "./CommentList";
 import CommentForm from "./CommentForm";
+import { useState, useEffect } from "react";
 
 const Comments = ({ article }) => {
     const [comments, setComments] = useState([]);

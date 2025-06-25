@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import { Users } from "./Contexts/UserContext";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Sidebar from "./components/Sidebar";
+import Footer from "./components/Footer";
 
 function App() {
     const [topics, setTopics] = useState([]);
@@ -21,10 +22,13 @@ function App() {
 
     return (
         <>
-            <Header />
-            <Sidebar topics={topics}>
-                <Main topics={topics} />
-            </Sidebar>
+            <Users>
+                <Header />
+                <Sidebar topics={topics}>
+                    <Main topics={topics} />
+                </Sidebar>
+            </Users>
+            <Footer />
         </>
     );
 }

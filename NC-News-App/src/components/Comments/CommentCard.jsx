@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { GoThumbsup, GoThumbsdown, GoTrash } from "react-icons/go";
 import Delete from "../Delete";
+import { UserContext } from "../../Contexts/UserContext";
 
 const CommentCard = ({ comment, onDelete }) => {
     const [votes, setVotes] = useState(comment.votes);
     const [isUpdating, setIsUpdating] = useState(false);
+    const { user } = useContext(UserContext);
 
     const handleVote = async (increment) => {
         if (isUpdating) return;
@@ -66,7 +68,7 @@ const CommentCard = ({ comment, onDelete }) => {
                     </button>
                 </span>
                 <div>
-                    {comment.author === "happyamy2016" && (
+                    {comment.author === user?.username && (
                         <Delete
                             commentId={comment.comment_id}
                             onDelete={onDelete}

@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Homepage from "./Homepage";
 import ArticlePage from "./Articles/ArticlePage";
 import TopicPage from "./TopicPage";
+import ErrorPage from "./ErrorPage";
 
 const Main = ({ topics }) => {
     return (
@@ -16,6 +17,7 @@ const Main = ({ topics }) => {
                     element={<TopicPage topicSlug={topic.slug} />}
                 />
             ))}
+            <Route path="/*" element={<ErrorPage />} />
         </Routes>
     );
 };

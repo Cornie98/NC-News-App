@@ -27,7 +27,7 @@ const Homepage = () => {
 
     return (
         <div className="main-content">
-            <h3 className="Top-Article-Title">Top Article</h3>
+            <h2 className="Top-Article-Title">Top Article :</h2>
             <TopArticle article={topArticle} />
             <h2>All Articles</h2>
             <ArticleList articles={articles} />
