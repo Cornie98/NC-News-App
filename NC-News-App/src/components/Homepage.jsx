@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import ArticleList from "./Articles/ArticleList";
 import TopArticle from "./Articles/TopArticle";
+
+import Loading from "./Loading";
 const Homepage = () => {
     const [articles, setArticles] = useState([]);
     const [topArticle, setTopArticle] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetch("https://nc-news-api-jqsh.onrender.com/api/articles")
@@ -19,18 +22,29 @@ const Homepage = () => {
                     );
                     setTopArticle(top);
                 }
+                setLoading(false);
             })
             .catch((err) => {
                 console.log(err);
+                setLoading(false);
             });
     }, []);
 
     return (
         <div className="main-content">
-            <h2 className="Top-Article-Title">Top Article :</h2>
-            <TopArticle article={topArticle} />
-            <h2>All Articles</h2>
-            <ArticleList articles={articles} />
+            {loading ? (
+                <Loading />
+            ) : (
+                <>
+                    {topArticle && (
+                        <>
+                            <TopArticle article={topArticle} />
+                        </>
+                    )}
+                    <h2>All Articles</h2>
+                    <ArticleList articles={articles} />
+                </>
+            )}
         </div>
     );
 };

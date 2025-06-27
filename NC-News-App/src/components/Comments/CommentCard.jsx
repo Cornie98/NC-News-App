@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { GoThumbsup, GoThumbsdown, GoTrash } from "react-icons/go";
-import Delete from "../Delete";
+import Delete from "./Delete";
 import { UserContext } from "../../Contexts/UserContext";
 
 const CommentCard = ({ comment, onDelete }) => {

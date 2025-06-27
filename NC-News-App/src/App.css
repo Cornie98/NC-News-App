@@ -7,6 +7,9 @@ body {
     overflow-x: hidden;
     color: rgb(0, 0, 0);
 }
+img {
+    border-radius: 10px;
+}
 h1,
 h2,
 h3,
@@ -14,6 +17,7 @@ h4 {
     font-weight: 400;
 }
 .header {
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 0.5em;
@@ -24,6 +28,9 @@ h4 {
     position: relative;
     gap: 0.5rem;
     flex-shrink: 0;
+}
+.header-right {
+    display: flex;
 }
 a {
     text-decoration: none;
@@ -85,6 +92,7 @@ a:hover {
     display: flex;
     flex-direction: column;
     width: 100%;
+    font-size: large;
 }
 
 .comment-form input {
@@ -163,32 +171,94 @@ button:hover {
     display: block;
 }
 
-.article-card {
-    padding: 1rem;
-    flex: 0 0 200px;
-    list-style: none;
-    border-left: dotted rgba(0, 0, 139, 0.712);
-    border-width: 4px;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    white-space: normal;
-}
-.article-card.vertical {
-    border-bottom: dotted rgba(0, 0, 139, 0.712);
-    border-left: none;
-
-    flex: unset;
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-}
-.article-card-img {
-    max-height: 300px;
-}
 .votes-and-comments {
     display: flex;
     gap: 0.5rem;
 }
+
+.article-card {
+    flex: 0 0 auto;
+    min-width: 280px;
+    max-width: 300px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 12px;
+    border-right: dotted darkblue;
+    padding: 2rem;
+    overflow: hidden;
+}
+
+.article-meta {
+    flex-grow: 1;
+    padding: 1rem;
+}
+
+.article-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+    min-height: 3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.article-img-wrapper {
+    height: 200px;
+    overflow: hidden;
+}
+
+.article-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.article-card.vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    border-bottom: dotted rgba(0, 0, 139, 0.712);
+    border-left: none;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1rem;
+    gap: 1rem;
+    background: white;
+    border-radius: 12px;
+}
+
+.article-card.vertical .article-img-wrapper {
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.article-card.vertical img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.votes-and-comments {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    border-top: 1px solid #eee;
+    background: #f9f9f900;
+}
+
 .article-section {
     display: flex;
     flex-direction: column;
@@ -213,17 +283,46 @@ button:hover {
     font-size: larger;
 }
 .vote-buttons {
+    border: 1px solid rgba(0, 0, 139, 0.877);
+    border-radius: 20%;
+    padding: 0.5rem;
     margin-left: 2rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
+.reactions-display {
+    margin-left: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.vote-emoji-section {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+.emoji-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: nowrap;
+}
+
+.reactions-display {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+}
+
 .share-button {
     margin-right: 2rem;
     display: flex;
     align-items: center;
 }
 .article-body {
+    padding: 2rem;
     font-family: monospace;
     font-optical-sizing: auto;
     font-weight: 450;
@@ -246,6 +345,10 @@ button:hover {
     overflow-wrap: break-word;
     max-width: 100%;
     font-size: clamp(0.95rem, 2vw, 1rem);
+    border: solid 2px #2222222d;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
 }
 .comment-name-date-section {
     font-size: large;
@@ -266,6 +369,15 @@ button:hover {
     align-items: center;
     gap: 0.5rem;
 }
+.article-see-more {
+    font-size: larger;
+    padding: 1rem;
+    padding-left: 0rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .topic-heading {
     display: flex;
     justify-content: space-between;
@@ -295,8 +407,16 @@ button:hover {
     border-color: darkblue;
 }
 .login-button {
+    margin: 1rem;
+    background-color: darkblue;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 20px;
     width: 100px;
     font-size: larger;
+}
+.login-button:hover {
+    background-color: white;
 }
 .login-overlay {
     position: fixed;
@@ -392,12 +512,70 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: darkblue;
+    padding: 0;
+    margin: 0;
+    background-color: rgba(0, 0, 139, 0.568);
 }
 footer p {
     color: white;
-    background-color: darkblue;
+    background-color: rgba(0, 0, 139, 0);
     padding: 1rem;
     margin: 0;
     font-size: 1rem;
+}
+.back-to-top {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 20px;
+    background-color: white;
+    color: darkblue;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.user-profile-section {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.profile-picture {
+    width: 100px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.profile-text p {
+    font-size: larger;
+    margin: 0;
+    line-height: 1.3;
+}
+.warning-msg {
+    color: red;
+}
+.loading-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-size: 200%;
+    line-height: 2rem;
+}
+.loading-text {
+    margin-bottom: 0%;
+    word-wrap: break-word;
+}
+.loading-img {
+    padding: 1rem;
+    position: relative;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    width: 200px;
+    height: auto;
+}
+.bold {
+    color: darkblue;
+    font-weight: 600;
 }

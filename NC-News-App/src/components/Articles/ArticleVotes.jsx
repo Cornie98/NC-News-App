@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { GoThumbsup, GoThumbsdown } from "react-icons/go";
 import { PiShareFatLight } from "react-icons/pi";
+import AddReaction from "./AddReaction";
 
-const ArticleVotes = ({ article }) => {
+const ArticleVotes = ({ article, reactions, setReactions }) => {
     const [votes, setVotes] = useState(article.votes);
     const [isUpdating, setIsUpdating] = useState(false);
 
@@ -45,21 +46,49 @@ const ArticleVotes = ({ article }) => {
 
     return (
         <section className="article-vote-section">
-            <div className="vote-buttons">
-                <span>
-                    <button onClick={() => handleVote(1)} disabled={isUpdating}>
-                        <GoThumbsup />
-                    </button>
-                </span>
-                <span>{votes}</span>
-                <span>
-                    <button
-                        onClick={() => handleVote(-1)}
-                        disabled={isUpdating}
-                    >
-                        <GoThumbsdown />
-                    </button>
-                </span>
+            <div className="vote-emoji-section">
+                <div className="vote-buttons">
+                    <span>
+                        <button
+                            onClick={() => handleVote(1)}
+                            disabled={isUpdating}
+                            aria-label="Upvote article"
+                        >
+                            <GoThumbsup />
+                        </button>
+                    </span>
+                    <span>{votes}</span>
+                    <span>
+                        <button
+                            onClick={() => handleVote(-1)}
+                            disabled={isUpdating}
+                            aria-label="downvote article"
+                        >
+                            <GoThumbsdown />
+                        </button>
+                    </span>
+                </div>
+                <div className="emoji-section">
+                    <span>
+                        <AddReaction
+                            article={article}
+                            setReactions={setReactions}
+                        />
+                    </span>
+                    <div className="reactions-display">
+                        {reactions &&
+                            reactions.length > 0 &&
+                            reactions.map(({ emoji, count }) => (
+                                <span
+                                    key={emoji}
+                                    className="reaction-item"
+                                    aria-label={`${count} ${emoji} reactions`}
+                                >
+                                    {emoji} {count}
+                                </span>
+                            ))}
+                    </div>
+                </div>
             </div>
             <button onClick={handleShareClick} className="share-button">
                 <PiShareFatLight />

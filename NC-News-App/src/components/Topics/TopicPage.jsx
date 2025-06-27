@@ -1,8 +1,8 @@
-import ArticleList from "./Articles/ArticleList";
+import ArticleList from "../Articles/ArticleList";
 import { useEffect, useState } from "react";
-import Filter from "./Filter";
+import Filter from "../Filter";
 
-const TopicPage = ({ topicSlug }) => {
+const TopicPage = ({ topic }) => {
     const [articles, setArticles] = useState([]);
     const [query, setQuery] = useState({
         sort_by: "created_at",
@@ -11,7 +11,7 @@ const TopicPage = ({ topicSlug }) => {
 
     useEffect(() => {
         fetch(
-            `https://nc-news-api-jqsh.onrender.com/api/articles?topic=${topicSlug}&sort_by=${query.sort_by}&order=${query.order}`
+            `https://nc-news-api-jqsh.onrender.com/api/articles?topic=${topic.slug}&sort_by=${query.sort_by}&order=${query.order}`
         )
             .then((response) => {
                 return response.json();
@@ -22,12 +22,15 @@ const TopicPage = ({ topicSlug }) => {
             .catch((err) => {
                 console.log(err);
             });
-    }, [topicSlug, query]);
+    }, [topic.slug, query]);
 
     return (
         <div>
             <div className="topic-heading">
-                <h2>#{topicSlug}</h2>
+                <div>
+                    <h2>#{topic.slug}</h2>
+                    <p>{topic.description}</p>
+                </div>
                 <Filter onChange={setQuery} />
             </div>
 

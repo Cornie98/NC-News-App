@@ -13,6 +13,20 @@
     top: 0;
     height: 100vh;
 }
+.hamburger-wrapper {
+    display: flex;
+}
+.hamburger-button {
+    display: none;
+    position: absolute;
+    top: 6rem;
+    left: 2.2rem;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    z-index: 1001;
+    cursor: pointer;
+}
 
 .sidebar ul {
     list-style: none;
@@ -23,16 +37,31 @@
 .sidebar li {
     font-size: large;
     margin-bottom: 1rem;
+    font-weight: 400;
 }
 
 .sidebar a {
     text-decoration: none;
     color: #000000;
-    font-weight: bold;
+    font-weight: 400;
 }
 .sidebar a:hover {
     color: darkblue;
 }
+.hamburger-button a:hover {
+    color: darkblue;
+}
+.sidebar-title a {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.sidebar-subtitle a {
+    display: block;
+    padding-left: 1.5rem;
+    font-size: 1rem;
+    color: #333;
+}
+
 .content {
     flex: 1;
     padding: 2rem;
@@ -44,6 +73,22 @@
 @media (max-width: 768px) {
     .sidebar {
         display: none;
+        position: absolute;
+        top: 140px;
+        left: 0;
+        width: 200px;
+        background-color: #ffffff;
+        border: dotted darkblue;
+        padding: 1rem;
+        z-index: 1000;
+    }
+
+    .sidebar.open {
+        display: block;
+    }
+
+    .hamburger-button {
+        display: block;
     }
     .title {
         display: none;
@@ -51,7 +96,27 @@
     .search-form {
         margin-left: 100px;
     }
+    .header {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0.5rem;
+    }
+    .header-right {
+        order: 2;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
     .content {
         padding: 1rem;
+    }
+}
+@media (max-width: 600px) {
+    .hamburger-button {
+        top: 10rem;
+    }
+    .sidebar {
+        top: 180px;
     }
 }
